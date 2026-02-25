@@ -9,35 +9,71 @@ public class Village {
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
-	
+	private Marche marche;
 
-	public Village(String nom, int nbVillageoisMaximum) {
+	public Village(String nom, int nbVillageoisMaximum,int nbEtal) {
 		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
 	}
 	
-	public static class Marche(){
+	private static class Marche{
+
 		private Etal[] etals;
 		private int quantite;
-		public Marche(int quantite) {
+		
+		private Marche(int quantite) {
+			this.quantite=quantite;
 			etals = new Etal[quantite];
 		}
 		
 		void utiliserEtal(int indiceEtal, Gaulois vendeur,String produit, int nbProduit) {
-			for(indiceEtal=0;indiceEtal<quantite;indiceEtal++) {
-				
-			}
+			etals[indiceEtal].occuperEtal(vendeur,produit,nbProduit);
 		}
+		
 		
 		int trouverEtalLibre() {
-			for (int i=0;i<quantite;i++){
-				if (isEtalOccupe()==False){
+			int indiceEtal=0;
+			while(etals[indiceEtal].isEtalOccupe()){
+				indiceEtal++;
 			}
-			return -1
+			return indiceEtal;
+			
 		}
 		
+		Etal[] trouverEtals(String produit){
+			Etal[] nvTab = null;
+			int indiceEtal=0;
+			while(etals[indiceEtal].contientProduit(produit)) {
+				nvTab[indiceEtal]=etals[indiceEtal];
+				indiceEtal++;
+			}
+			
+			return nvTab;
+		}
 		
-	} 
+		Etal trouverVendeur(Gaulois gaulois){
+			int indiceEtal=0;
+			while(etals[indiceEtal].getVendeur() != gaulois) {
+				indiceEtal++;
+			}
+			
+			return etals[indiceEtal];
+			
+		}
+		
+		String afficherMarcher() {
+			int indiceEtal=0;
+			
+			while(etals[indiceEtal].isEtalOccupe()) {
+				etals[indiceEtal].afficherEtal();
+				indiceEtal++;
+			}
+			int nbEtalVide=quantite-indiceEtal;
+			return "il rest" + nbEtalVide+" étals non utilisées dans le marche.\n";
+		}
+	}	
+	
+	
 
 	public String getNom() {
 		return nom;
@@ -47,7 +83,12 @@ public class Village {
 		this.chef = chef;
 	}
 	
-
+	public String installerVendeur(Gaulois vendeur, String produit,int nbProduit) {
+		StringBuilder chaine = new StringBuilder();
+		
+		
+		
+	}
 	
 	
 	public void ajouterHabitant(Gaulois gaulois) {
