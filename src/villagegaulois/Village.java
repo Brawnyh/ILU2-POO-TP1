@@ -16,17 +16,16 @@ public class Village {
 		villageois = new Gaulois[nbVillageoisMaximum];
 	}
 	
-	private static class Marche{
+	public class Marche{
 
 		private Etal[] etals;
 		private int quantite;
 		
 		private Marche(int quantite) {
-			this.quantite=quantite;
 			etals = new Etal[quantite];
 		}
 		
-		void utiliserEtal(int indiceEtal, Gaulois vendeur,String produit, int nbProduit) {
+		public void utiliserEtal(int indiceEtal, Gaulois vendeur,String produit, int nbProduit) {
 			etals[indiceEtal].occuperEtal(vendeur,produit,nbProduit);
 		}
 		
@@ -85,11 +84,20 @@ public class Village {
 	
 	public String installerVendeur(Gaulois vendeur, String produit,int nbProduit) {
 		StringBuilder chaine = new StringBuilder();
-		
+		int indiceEtal=0;
+		Marche marche = new Marche(1);
+		marche.utiliserEtal(indiceEtal,vendeur,produit,nbProduit);
+		indiceEtal++;
+		return vendeur.getNom()+"cherche un endroit pour vendre"+nbProduit + produit+"Le vendeur"+vendeur.getNom()+"vend des"+ produit + "à l'étal n°"+ indiceEtal;
 		
 		
 	}
 	
+	public String rechercherVendeursProduit(String produit) {
+		Marche marche=new Marche(1);
+		marche.trouverEtals(produit);
+		return ;
+	}
 	
 	public void ajouterHabitant(Gaulois gaulois) {
 		if (nbVillageois < villageois.length) {
