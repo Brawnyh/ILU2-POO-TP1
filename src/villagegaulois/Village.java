@@ -95,8 +95,8 @@ public class Village {
 	
 	public String rechercherVendeursProduit(String produit) {
 		Marche marche=new Marche(1);
-		marche.trouverEtals(produit);
-		return ;
+		
+		return "Les vendeurs qui propose des "+produit+"\n"+marche.trouverEtals(produit);
 	}
 	
 	public void ajouterHabitant(Gaulois gaulois) {
