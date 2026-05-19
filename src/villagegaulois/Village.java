@@ -70,7 +70,7 @@ public class Village {
 			int nbEtalVide=quantite-indiceEtal;
 			return "il rest" + nbEtalVide+" étals non utilisées dans le marche.\n";
 		}
-	}	
+	}
 	
 	
 
@@ -95,8 +95,8 @@ public class Village {
 	
 	public String rechercherVendeursProduit(String produit) {
 		Marche marche=new Marche(1);
-		
-		return "Les vendeurs qui propose des "+produit+"\n"+marche.trouverEtals(produit);
+		String etalsTrouver =  String.valueOf(marche.trouverEtals(produit)) ;
+		return "Les vendeurs qui propose des "+produit+"\n"+ etalsTrouver;
 	}
 	
 	public void ajouterHabitant(Gaulois gaulois) {
@@ -116,6 +116,7 @@ public class Village {
 				return gaulois;
 			}
 		}
+		
 		return null;
 	}
 
