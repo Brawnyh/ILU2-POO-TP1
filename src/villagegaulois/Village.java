@@ -2,7 +2,7 @@ package villagegaulois;
 
 import personnages.Chef;
 import personnages.Gaulois;
-
+//test
 public class Village {
 	private String nom;
 	private Chef chef;
@@ -41,7 +41,7 @@ public class Village {
 		}
 		return null;
 	}
-
+	
 	public String afficherVillageois() {
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
