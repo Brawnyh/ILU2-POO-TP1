@@ -2,12 +2,14 @@ package villagegaulois;
 
 import personnages.Chef;
 import personnages.Gaulois;
-//test
+import villagegaulois.Etal;
+
 public class Village {
 	private String nom;
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
+	private Etal[] etals;
 
 	public Village(String nom, int nbVillageoisMaximum) {
 		this.nom = nom;
@@ -22,6 +24,29 @@ public class Village {
 		this.chef = chef;
 	}
 
+	
+	private class Marche {
+		private Etal[] etals;
+		
+		public Marche(int nbEtal) {
+			etals = new Etal[nbEtal];
+		}
+		
+		void UtiliserEtal(int IndiceEtal,Gaulois vendeur,String Produit,int nbProduit) {
+			etals.occuperEtal();
+		}
+		
+		int trouverEtalLibre() {
+			if  (Etal) {
+				
+				
+			}else {
+				return -1;
+			}
+		}
+		
+	}
+	
 	public void ajouterHabitant(Gaulois gaulois) {
 		if (nbVillageois < villageois.length) {
 			villageois[nbVillageois] = gaulois;
