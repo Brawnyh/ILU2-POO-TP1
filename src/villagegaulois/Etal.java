@@ -8,6 +8,7 @@ public class Etal {
 	private int quantiteDebutMarche;
 	private int quantite;
 	private boolean etalOccupe = false;
+	
 
 	public boolean isEtalOccupe() {
 		return etalOccupe;
