@@ -4,16 +4,20 @@ import personnages.Chef;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 
+
 public class Village {
 	private String nom;
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
 	private Marche marche;
+	private int tailleM;
 
-	public Village(String nom, int nbVillageoisMaximum) {
+	public Village(String nom, int nbVillageoisMaximum,int tailleM) {
 		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
+		this.tailleM =tailleM;
+		marche = new Marche(tailleM);
 	}
 
 	public String getNom() {
@@ -32,6 +36,9 @@ public class Village {
 		public Marche(int nbEtal) {
 			this.nbEtal=nbEtal;
 			etals = new Etal[nbEtal];
+		    for (int i = 0; i < nbEtal; i++) {
+		        etals[i] = new Etal();
+		    }
 		}
 		
 		void UtiliserEtal(int indiceEtal,Gaulois vendeur,String produit,int nbProduit) {
@@ -41,12 +48,10 @@ public class Village {
 		}
 		
 		int trouverEtalLibre() {
-			int indice=0;
-			while(etals[indice].isEtalOccupe()) {
-				indice+=1;
-			}
-			if (etals[indice].isEtalOccupe()==false) {
-				return indice;
+			for (int i=0;i<nbEtal;i++) {
+				if( !etals[i].isEtalOccupe()) {
+					return i;
+				}
 			}
 			return -1;
 			
@@ -63,9 +68,10 @@ public class Village {
 			}
 			Etal[] newtab=new Etal[tailleT];
 			indice=0;
+			int indiceJ=0;
 			while (etals[indice].isEtalOccupe()) {
 				if(etals[indice].contientProduit(produit)) {
-					newtab[indice]= etals[indice];
+					newtab[indiceJ]= etals[indice];
 				}
 			}
 			return newtab;
@@ -116,6 +122,20 @@ public class Village {
 		}
 		return null;
 	}
+	
+	public String installerVendeur(Gaulois vendeur, String produit,int nbProduit) {
+		
+		System.out.println("le " +vendeur.getNom()+ " cherche un endroit pour vendre " + nbProduit + " "+ produit);
+		int indiceEtal = marche.trouverEtalLibre();
+		marche.UtiliserEtal(indiceEtal, vendeur, produit, nbProduit);
+		
+		return " Le vendeur "+ vendeur.getNom() + " vend des fleurs à l'étal n°" + indiceEtal;
+		
+	}
+	
+	//public String rechercherVendeursProduit(String produit) 
+		
+	
 	
 	public String afficherVillageois() {
 		StringBuilder chaine = new StringBuilder();
