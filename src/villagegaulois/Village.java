@@ -84,15 +84,19 @@ public class Village {
 			return etals[indice];
 		}
 		
-		String afficherMarcher() {
+		String afficherMarche() {
+			System.out.println("Le Marché du village '" + getNom() + "' posséde plusieurs étals: ");
 			int indice=0;
 			StringBuilder str=new StringBuilder() ;
-			while(etals[indice].isEtalOccupe()) {
-				str.append(etals[indice].afficherEtal());
-				indice+=1;
-				
+			
+			for (int i=0;i<etals.length;i++) {
+				if (etals[i].isEtalOccupe()) {
+					str.append(etals[i].afficherEtal());
+					indice+=1;
+				}
 			}
-			int reste=this.nbEtal - indice;
+			
+			int reste=etals.length - indice;
 			System.out.println("il reste " + reste + " étals non utilisé par le marché.\n");
 			return str.toString();
 			
@@ -157,6 +161,14 @@ public class Village {
 		System.out.println( marche.trouverVendeur(vendeur).afficherEtal() );
 		return marche.trouverVendeur(vendeur);
 		
+	}
+	
+	public String partirVendeur(Gaulois vendeur) {
+		return marche.trouverVendeur(vendeur).libererEtal();
+	}
+	
+	public String afficherMarche() {
+		return marche.afficherMarche();
 	}
 	
 	
