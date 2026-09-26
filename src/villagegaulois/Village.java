@@ -153,6 +153,12 @@ public class Village {
 	}
 		
 	
+	public Etal rechercherEtal(Gaulois vendeur) {
+		System.out.println( marche.trouverVendeur(vendeur).afficherEtal() );
+		return marche.trouverVendeur(vendeur);
+		
+	}
+	
 	
 	public String afficherVillageois() {
 		StringBuilder chaine = new StringBuilder();
