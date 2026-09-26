@@ -58,24 +58,21 @@ public class Village {
 		}
 		
 		Etal[] trouverEtals(String produit) {
-			int indice=0;
 			int tailleT=0;
-			while(etals[indice].isEtalOccupe()) {
-				if (etals[indice].contientProduit(produit)) {
-					tailleT+=1;
+			for (int i=0;i<etals.length;i++) {
+				if (etals[i].isEtalOccupe() && etals[i].contientProduit(produit)) {
+					tailleT++;
 				}
-				indice+=1;
 			}
 			Etal[] newtab=new Etal[tailleT];
-			indice=0;
 			int indiceJ=0;
-			while (etals[indice].isEtalOccupe()) {
-				if(etals[indice].contientProduit(produit)) {
-					newtab[indiceJ]= etals[indice];
+			for (int i=0;i<etals.length;i++) {
+				if (etals[i].isEtalOccupe() && etals[i].contientProduit(produit)) {
+					newtab[indiceJ]=etals[i];
+					indiceJ++;
 				}
 			}
 			return newtab;
-			
 		}
 		
 		Etal trouverVendeur(Gaulois gaulois) {
@@ -133,7 +130,27 @@ public class Village {
 		
 	}
 	
-	//public String rechercherVendeursProduit(String produit) 
+	public String rechercherVendeursProduit(String produit) {
+		StringBuilder ch = new StringBuilder();
+		Etal[] tab = marche.trouverEtals(produit);
+		//creer tableau avec des etals contenant x produit->parcourir le tableau et afficher prenom
+		
+		if (tab.length==0) {
+			return "Il n'y a pas de vendeur qui propose des fleurs au marché";
+		}else {
+			System.out.println("les vendeurs qui proposent des "+ produit+ " :");
+			for (int i=0;i<tab.length;i++) {
+				ch.append("-"+tab[i].getVendeur().getNom());
+				ch.append("\n");
+				
+			}
+		}
+		
+		
+		
+		return ch.toString();
+		
+	}
 		
 	
 	
