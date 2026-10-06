@@ -33,7 +33,7 @@ public class Village {
 		private Etal[] etals;
 		private int nbEtal;
 		
-		public Marche(int nbEtal) {
+		private Marche(int nbEtal) {
 			this.nbEtal=nbEtal;
 			etals = new Etal[nbEtal];
 		    for (int i = 0; i < nbEtal; i++) {
