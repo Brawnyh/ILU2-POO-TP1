@@ -24,7 +24,11 @@ public class Scenario {
 		village.ajouterHabitant(obelix);
 		village.ajouterHabitant(druide);
 		village.ajouterHabitant(abraracourcix);
-		System.out.println(village.afficherVillageois());
+		try {
+			System.out.println(village.afficherVillageois());
+		} catch (VillageSansChefException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
 		System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
@@ -43,8 +47,30 @@ public class Scenario {
 		System.out.println(village.afficherMarche());
 		
 		Etal etal = new Etal();
-		etal.libererEtal(); //->envoi nullPointerException
+		etal.libererEtal();
 		System.out.println("fin teste");
+		
+
+		try {
+		    etal.acheterProduit(5, null);
+		} catch (NullPointerException e) {
+		    e.printStackTrace();
+		}
+//2
+		try {
+		    etal.acheterProduit(-1, abraracourcix);
+		} catch (IllegalArgumentException e) {
+		    e.printStackTrace();
+		}
+
+	
+		try {
+		    etal.acheterProduit(5, abraracourcix);
+		} catch (IllegalStateException e) {
+		    e.printStackTrace();
+		}
+		
+		
 		
 	}
 
